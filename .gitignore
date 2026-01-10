@@ -1,0 +1,13 @@
+*.dat
+*.csv
+*.fits
+test/
+*.ipynb_checkpoints
+.vscode/
+__pycache__/
+*.pyc
+.env
+.venv
+env/
+venv/
+.idea/
