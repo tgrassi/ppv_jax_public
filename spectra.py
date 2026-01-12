@@ -6,7 +6,7 @@ import numpy as np
 # get line velocities and strengths for a given molecule
 def get_lines(molecule):
 
-    if molecule == "NH2D":
+    if molecule == "p-NH2D":
         from data.struct_NH2D import freq_dict_cen, freq_dict, line_strength_dict
 
         clight = 2.99792458e5  # km/s
