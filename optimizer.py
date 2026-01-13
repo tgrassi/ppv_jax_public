@@ -9,26 +9,32 @@ def optimize(init_params, ppvs_target, model_args, learning_rate, params_history
 
     def get_output(params):
 
-        output, dvs, ems, models = get_ppvs(params, model_args)
+        output, ems, models = get_ppvs(params, model_args)
 
-        return output, dvs, ems, models
+        return output, ems, models
 
     def loss_fn(params, target):
 
-        output, dvs, _, _ = get_output(params)
+        output, _, models = get_output(params)
 
-        lambda0 = 1e0
-        lambda1 = 1e0
+        lambda0 = 1e0 # weight for model 0
+        lambda1 = 1e0 # weight for model 1
 
         mask = jnp.ones_like(output)
 
-        lambda_penalty = 0e0
-        penalty = jnp.mean(jnp.square(jnp.minimum(-dvs, 0.0)))
+        # example of how to compute velocity differences between models
+        # vvs = [jnp.sqrt(m[..., 3:6]**2) for m in models]
+        # vvs = jnp.stack(vvs, axis=0)
+        # dvs = vvs[1] - vvs[0]
+
+        # apply penalty to velocity differences (if needed, see also below)
+        # lambda_penalty = 0e0
+        # penalty = jnp.mean(jnp.square(jnp.minimum(-dvs, 0.0)))
 
         total_loss = lambda0 * optax.l2_loss(output[0] * mask[0], target[0] * mask[0]) + \
                         lambda1 * optax.l2_loss(output[1] * mask[1], target[1] * mask[1])
 
-        return jnp.mean(total_loss) + penalty * lambda_penalty
+        return jnp.mean(total_loss) #+ penalty * lambda_penalty
 
     loss_and_grad = jax.value_and_grad(loss_fn)
     optimizer = optax.adam(learning_rate=learning_rate)
@@ -74,6 +80,6 @@ def optimize(init_params, ppvs_target, model_args, learning_rate, params_history
     pbar.n = pbar.total
     pbar.close()
 
-    output, _, ems, models = get_output(params)
+    output, ems, models = get_output(params)
 
     return params, output, ems, models, params_history, loss_history

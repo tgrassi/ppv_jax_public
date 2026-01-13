@@ -160,7 +160,7 @@ def f(pp, pa, sigma_beam=1, imodel=0):
     if sigma_beam > 1:
         ppv = smooth1(ppv, sigma=sigma_beam)[sigma_beam//2::sigma_beam, sigma_beam//2::sigma_beam, :]
 
-    return ppv, em, v, jnp.stack([Xo, Yo, Zo, vx, vy, vz, ngas])
+    return ppv, em, jnp.stack([Xo, Yo, Zo, vx, vy, vz, ngas])
 
 '''
 Get position-position-velocity cubes for multiple models.
@@ -187,25 +187,21 @@ def get_ppvs(params, model_args=None, nmodels=2, just_ppv=False):
 
     ppvs = []
     ems = []
-    vvs = []
     models = []
     for i in range(nmodels):
-        ppv, em, vv, model = f(params, model_args, sigma_beam=1, imodel=i)
+        ppv, em, model = f(params, model_args, sigma_beam=1, imodel=i)
         ppvs.append(ppv)
         ems.append(em)
-        vvs.append(vv)
         models.append(model)
 
     ppvs = jnp.stack(ppvs, axis=0)
     ems = jnp.stack(ems, axis=0)
     models = jnp.stack(models, axis=0)
-    vvs = jnp.stack(vvs, axis=0)
-    dvs = vvs[1] - vvs[0]
 
     if just_ppv:
         return ppvs
     else:
-        return ppvs, dvs, ems, models
+        return ppvs, ems, models
 
 '''
 Compute the derivative of the position-position-velocity cubes with respect to a model parameter.

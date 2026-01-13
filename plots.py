@@ -218,6 +218,41 @@ def plot_slice(models, molecules, fname=None, titles=None, slice='xy'):
         plt.savefig(fname, bbox_inches='tight')
     plt.show()
 
+# ---------------------------------
+def plot_emission(models, emissions, vchans, molecules, fname=None, xpos=0., zpos=0., vrange=None):
+
+    nmols = len(molecules)
+    figs, axs = plt.subplots(1, nmols, figsize=(5*nmols, 5))
+
+    em_max = jnp.max(emissions)
+    ngas_max = np.max([models[i][6].max() for i in range(nmols)])
+    for i in range(nmols):
+        ax = axs[i]
+        em = emissions[i]
+
+        Xo, Yo, Zo, vx, vy, vz, ngas = models[i]
+
+        ix = np.argmin(np.abs(Xo[:, 0, 0] - xpos))
+        iz = np.argmin(np.abs(Zo[0, 0, :] - zpos))
+
+        ax.contourf(vchans, Yo[ix, :, iz], em[ix, :, iz, :] / em_max, vmin=0, vmax=1, cmap='Greys_r')
+
+        ax.plot(vy[ix, :, iz], Yo[ix, :, iz], label='$v_y(y)$')
+        ax.scatter(vy[ix, :, iz], Yo[ix, :, iz], color='tab:orange', s=(ngas[ix, :, iz]/ngas_max)**2*50, alpha=0.5, label='$n(y)$')
+        if i > 0:
+            ax.set_yticks([])
+        else:
+            ax.set_ylabel("y (LOS)")
+        ax.set_xlabel("Velocity (km/s)")
+        ax.set_title(f"Emission map for {molecules[i]}")
+        if vrange is not None:
+            ax.set_xlim(vrange)
+        ax.legend()
+
+    plt.tight_layout()
+    if fname is not None:
+        plt.savefig(fname, bbox_inches='tight')
+    plt.show()
 
 # ---------------------------------
 def plot_comparison(ppvs_target, ppvs_optimized, vchans, molecules, nchans=30, fname=None):
