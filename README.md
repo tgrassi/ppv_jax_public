@@ -4,7 +4,7 @@
 ### 📔 Example Notebooks
 
 - [Complete example with many plots](test.ipynb) (Appendix A)   
-- [Quick example loading mock FITS data](quick.ipynb)     
+- [Quick example using mock FITS data](quick.ipynb)     
 
 ### 💻 If you want to run it on your machine
 It is recommended to use an Nvidia GPU card.     
