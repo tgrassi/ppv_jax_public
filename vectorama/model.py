@@ -1,6 +1,6 @@
 import jax.numpy as jnp
 import jax
-from utils import gaussian, gaussian_normax, rotate, get_Ms, smooth1, derotate
+from .utils import gaussian, gaussian_normax, rotate, get_Ms, smooth1, derotate
 
 """
 Compute position-velocity cube for a gas kinematic model.

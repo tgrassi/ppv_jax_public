@@ -1,7 +1,7 @@
 import jax.numpy as jnp
 import jax
 import optax
-from model import get_ppvs
+from .model import get_ppvs
 from tqdm import tqdm
 import numpy as np
 
