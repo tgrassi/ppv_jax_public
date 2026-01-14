@@ -18,6 +18,6 @@ pip install tqdm
 ```
 
 ### 🔧 Tested on 
-- NVIDIA GTX 1050Ri 4GB
-- NVIDIA Quadro RTX 4000 8GB
-- NVIDIA A100 80GB PCIe
+- NVIDIA GTX 1050Ri, 4GB
+- NVIDIA Quadro RTX 4000, 8GB
+- NVIDIA A100 PCIe, 80GB
