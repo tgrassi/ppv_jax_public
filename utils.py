@@ -88,22 +88,46 @@ def smooth1(Z, sigma=4):
     return smooth_image
 
 # -------------------------------
-def ppv_to_fits(ppv, vchans, angular_size, ra=760.7, dec=251.8, projection='GLS', fname='ppv.fits'):
+def ppv_to_fits(ppv, vchans, ra_deg=76.07, dec_deg=25.18, angular_size_arcsec=128., projection='GLS', fname='ppv.fits', restfreq_hz=1.420405751e9, object_name='Object'):
     from astropy.io import fits
+    import numpy as np
 
-    hdu = fits.PrimaryHDU(ppv.transpose(2, 1, 0))
+    angular_size_deg = angular_size_arcsec / 3600.
+
+    hdu = fits.PrimaryHDU(ppv.transpose(2, 1, 0).astype(np.float32))
     hdul = fits.HDUList([hdu])
 
     hdr = hdul[0].header
-    hdr['DATAMIN'] = ppv.min()
-    hdr['DATAMAX'] = ppv.max()
+    hdr['DATAMIN'] = ppv.min().item()
+    hdr['DATAMAX'] = ppv.max().item()
+
     hdr['CTYPE1'] = f"RA--{projection}"
-    hdr['CRVAL1'] = 0.0
+    hdr['CRVAL1'] = ra_deg
     hdr['CRPIX1'] = ppv.shape[0] // 2 + 1
-    hdr['CDELT1'] = 1.0  # arbitrary units
+    hdr['CDELT1'] = angular_size_deg / ppv.shape[0]
+    hdr['CUNIT1'] = 'deg'
+    hdr['CROTA1'] = 0.0
 
     hdr['CTYPE2'] = f"DEC--{projection}"
+    hdr['CRVAL2'] = dec_deg
+    hdr['CRPIX2'] = ppv.shape[1] // 2 + 1
+    hdr['CDELT2'] = angular_size_deg / ppv.shape[1]
+    hdr['CUNIT2'] = 'deg'
+    hdr['CROTA2'] = 0.0
 
     hdr['CTYPE3'] = "VRAD"
+    hdr['CRVAL3'] = vchans[ppv.shape[2] // 2].item() * 1e3
+    hdr['CRPIX3'] = ppv.shape[2] // 2 + 1
+    hdr['CDELT3'] = (vchans[1] - vchans[0]).item() * 1e3
+    hdr['CUNIT3'] = 'm/s'
+    hdr['CROTA3'] = 0.0
+
+    hdr['BUNIT'] = 'arbitrary'
+    hdr['RA'] = ra_deg
+    hdr['DEC'] = dec_deg
+    hdr['EQUINOX'] = 2000.0
+    hdr['RESTFREQ'] = restfreq_hz
+
+    hdr['OBJECT'] = object_name
 
     hdul.writeto(fname, overwrite=True)
