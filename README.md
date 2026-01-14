@@ -1,17 +1,23 @@
-# PPV optimization JAX/Optax tool
+# 🌀 PPV optimization JAX/Optax tool
+(aka Vectorama)
 
-### Example Notebook
+### 📔 Example Notebooks
 
-[This is the notebook you are looking for](test.ipynb)
+- [Complete example with many plots](test.ipynb) (Appendix A)   
+- [Quick example loading mock FITS data](quick.ipynb)     
 
-
-### If you want to run it on your machine
+### 💻 If you want to run it on your machine
+It is recommended to use an Nvidia GPU card.     
 ```
 python -m venv env
 source env/bin/activate
-pip install --upgrade "jax[cuda12]"
+pip install --upgrade "jax[cuda12]"  # assuming you have CUDA 12
 pip install optax
 pip install matplotlib
 pip install tqdm
 ```
-Open `test.ipynb` Jupyter Notebook (e.g. with VScode).
+
+### 🔧 Tested on 
+- NVIDIA GTX 1050Ri 4GB
+- NVIDIA Quadro RTX 4000 8GB
+- NVIDIA A100 80GB PCIe
