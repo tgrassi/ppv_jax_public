@@ -23,11 +23,10 @@ pip install tqdm
 ### 📝 If you want to customize the model
 Change the function `f` in [this file](vectorama/model.py).       
 The input consists of a dictionary of parameters (`pp`) and a dictionary of spectral data (`pa`).      
-The output must be a tuple (return `ppv, em, jnp.stack([Xo, Yo, Zo, vx, vy, vz, ngas])`)
+The output must be a tuple (`return ppv, em, jnp.stack([Xo, Yo, Zo, vx, vy, vz, ngas])`)
 ```
     - ppv (ndarray): Position-position-velocity cube (x, z, v) of shape (nx, ny, nv)
     - em (ndarray): Emission cube before line-of-sight integration (x, y, z, v) of shape (nx, ny, nz, nv)
-    - v (ndarray): Velocity magnitude model cube (x, y, z) of shape (nx, ny, nv)
     - stack (ndarray): Model grid with coordinates and velocity components (x, y, z, vx, vy, vz, ngas),
                        where each element has shape (nx, ny, nv).
 ```
