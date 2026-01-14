@@ -86,3 +86,24 @@ def smooth1(Z, sigma=4):
     smooth_image = jax.vmap(jsp.signal.convolve, in_axes=(2, None, None), out_axes=2)(Z, window, 'same')
 
     return smooth_image
+
+# -------------------------------
+def ppv_to_fits(ppv, vchans, angular_size, ra=760.7, dec=251.8, projection='GLS', fname='ppv.fits'):
+    from astropy.io import fits
+
+    hdu = fits.PrimaryHDU(ppv.transpose(2, 1, 0))
+    hdul = fits.HDUList([hdu])
+
+    hdr = hdul[0].header
+    hdr['DATAMIN'] = ppv.min()
+    hdr['DATAMAX'] = ppv.max()
+    hdr['CTYPE1'] = f"RA--{projection}"
+    hdr['CRVAL1'] = 0.0
+    hdr['CRPIX1'] = ppv.shape[0] // 2 + 1
+    hdr['CDELT1'] = 1.0  # arbitrary units
+
+    hdr['CTYPE2'] = f"DEC--{projection}"
+
+    hdr['CTYPE3'] = "VRAD"
+
+    hdul.writeto(fname, overwrite=True)

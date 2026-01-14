@@ -117,12 +117,12 @@ def plot_spectra(ppvs, vchans, molecules, ppvs2=None, fname=None, labels=None):
         postfix = ""
         if labels is not None:
             postfix = f" ({labels[0]})"
-        p = plt.plot(vchans, ppvs[i, nx//2, nz//2, :], label=f"{molecules[i]}{postfix}")
+        p = plt.step(vchans, ppvs[i, nx//2, nz//2, :], label=f"{molecules[i]}{postfix}", where='mid')
         if ppvs2 is not None:
             postfix2 = ""
             if labels is not None:
                 postfix2 = f" ({labels[1]})"
-            plt.plot(vchans, ppvs2[i, nx//2, nz//2, :], lw=1, marker='.', alpha=0.5, color=p[0].get_color(), label=f"{molecules[i]}{postfix2}")
+            plt.step(vchans, ppvs2[i, nx//2, nz//2, :], lw=1, marker='.', alpha=0.5, color=p[0].get_color(), label=f"{molecules[i]}{postfix2}", where='mid')
 
     plt.xlabel("Velocity (km/s)")
     plt.ylabel("Intensity")
