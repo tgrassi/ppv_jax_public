@@ -1,5 +1,11 @@
 # PPV optimization JAX/Optax tool
 
+### Example Notebook
+
+[This is the notebook you are looking for](test.ipynb)
+
+
+### If you want to run it on your machine
 ```
 python -m venv env
 source env/bin/activate
