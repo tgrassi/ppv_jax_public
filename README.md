@@ -28,7 +28,8 @@ The output must be a tuple (return `ppv, em, jnp.stack([Xo, Yo, Zo, vx, vy, vz, 
     - ppv (ndarray): Position-position-velocity cube (x, z, v) of shape (nx, ny, nv)
     - em (ndarray): Emission cube before line-of-sight integration (x, y, z, v) of shape (nx, ny, nz, nv)
     - v (ndarray): Velocity magnitude model cube (x, y, z) of shape (nx, ny, nv)
-    - stack (ndarray): Model grid with coordinates and velocity components (x, y, z, vx, vy, vz, ngas), where each element has shape (nx, ny, nv).
+    - stack (ndarray): Model grid with coordinates and velocity components (x, y, z, vx, vy, vz, ngas),
+                       where each element has shape (nx, ny, nv).
 ```
 
 ------------------------------
