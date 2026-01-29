@@ -4,7 +4,7 @@
 ------------------------------
 ### 📔 Example Notebooks
 
-- [Complete example with many plots](test.ipynb) (Appendix A)   
+- [Complete example with many plots](test.ipynb) (paper Appendix A)   
 - [Quick example using mock FITS data](quick.ipynb)     
 
 ------------------------------
