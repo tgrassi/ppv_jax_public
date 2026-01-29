@@ -36,3 +36,8 @@ The output must be a tuple (`return ppv, em, jnp.stack([Xo, Yo, Zo, vx, vy, vz, 
 - NVIDIA GTX 1050Ri, 4GB
 - NVIDIA Quadro RTX 4000, 8GB
 - NVIDIA A100 PCIe, 80GB
+
+------------------------------
+### 📣 Cite    
+(Paper still under review, soon on arXiv)
+
