@@ -1,6 +1,8 @@
 # 🌀 PPV optimization JAX/Optax tool
 (aka Vectorama)
 
+Paper [submitted](https://www.aanda.org/)
+
 ------------------------------
 ### 📔 Example Notebooks
 
