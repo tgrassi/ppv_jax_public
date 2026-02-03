@@ -1,8 +1,8 @@
 # 🌀 PPV optimization JAX/Optax tool
 (aka Vectorama)
-```
+
 A **differentiable** 3D geometrical model that produces synthetic PPV data cubes from the parameterized density and velocity fields, and that can be efficiently optimized to reproduce real PPV data cubes.
-```
+
 Paper [submitted](https://www.aanda.org/)
 
 ------------------------------
