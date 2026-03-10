@@ -3,7 +3,7 @@
 
 A **differentiable** 3D geometrical model that produces synthetic PPV data cubes from the parameterized density and velocity fields, and that can be efficiently optimized to reproduce real PPV data cubes.
 
-Paper [submitted](https://www.aanda.org/)
+Paper: T.Grassi et al. (2026) [arXiv:2603.06791](https://arxiv.org/abs/2603.06791)
 
 ------------------------------
 ### 📔 Example Notebooks
@@ -43,5 +43,15 @@ The output must be a tuple (`return ppv, em, jnp.stack([Xo, Yo, Zo, vx, vy, vz, 
 
 ------------------------------
 ### 📣 Cite    
-(Paper still under review, soon on arXiv)
+```
+@article{grassi2026,
+      title={A differentiable and optimizable 3D model for interpretation of observed spectral data cubes}, 
+      author={T. Grassi and J. E. Pineda and S. Spezzano and D. Arzoumanian and F. Lique and Y. Misugi and E. Redaelli and S. S. Jensen and P. Caselli},
+      year={2026},
+      eprint={2603.06791},
+      archivePrefix={arXiv},
+      primaryClass={astro-ph.GA},
+      url={https://arxiv.org/abs/2603.06791}, 
+}
+```
 
