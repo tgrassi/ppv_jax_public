@@ -44,14 +44,21 @@ The output must be a tuple (`return ppv, em, jnp.stack([Xo, Yo, Zo, vx, vy, vz, 
 ------------------------------
 ### 📣 Cite    
 ```
-@article{grassi2026,
-      title={A differentiable and optimizable 3D model for interpretation of observed spectral data cubes}, 
-      author={T. Grassi and J. E. Pineda and S. Spezzano and D. Arzoumanian and F. Lique and Y. Misugi and E. Redaelli and S. S. Jensen and P. Caselli},
-      year={2026},
-      eprint={2603.06791},
-      archivePrefix={arXiv},
-      primaryClass={astro-ph.GA},
-      url={https://arxiv.org/abs/2603.06791}, 
+@ARTICLE{Grassi2026,
+       author = {{Grassi}, T. and {Pineda}, J.~E. and {Spezzano}, S. and {Arzoumanian}, D. and {Lique}, F. and {Misugi}, Y. and {Redaelli}, E. and {Jensen}, S.~S. and {Caselli}, P.},
+        title = "{A differentiable and optimizable 3D model for interpretation of observed spectral data cubes}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics of Galaxies, Instrumentation and Methods for Astrophysics},
+         year = 2026,
+        month = mar,
+          eid = {arXiv:2603.06791},
+        pages = {arXiv:2603.06791},
+          doi = {10.48550/arXiv.2603.06791},
+archivePrefix = {arXiv},
+       eprint = {2603.06791},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2026arXiv260306791G},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
 }
 ```
 
